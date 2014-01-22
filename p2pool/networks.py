@@ -84,43 +84,23 @@ nets = dict(
         VERSION_CHECK=lambda v: True,
     ),
 
-    terracoin=math.Object(
-        PARENT=networks.nets['terracoin'],
-        SHARE_PERIOD=30, # seconds
-        CHAIN_LENGTH=24*60*60//30, # shares
-        REAL_CHAIN_LENGTH=24*60*60//30, # shares
-        TARGET_LOOKBEHIND=200, # shares
-        SPREAD=15, # blocks
-        IDENTIFIER='a41b2356a1b7d46e'.decode('hex'),
-        PREFIX='5623b62178d2b9b3'.decode('hex'),
-        P2P_PORT=9323,
+    klondike=math.Object(
+        PARENT=networks.nets['klondike'],
+        SHARE_PERIOD=60, # seconds target spacing
+        CHAIN_LENGTH=12*60*60//15, # shares
+        REAL_CHAIN_LENGTH=12*60*60//15, # shares
+        TARGET_LOOKBEHIND=100, # shares coinbase maturity
+        SPREAD=30, # blocks
+        IDENTIFIER='be43F6b9c6924210'.decode('hex'),
+        PREFIX='b587199ba6d7729a'.decode('hex'),
+        P2P_PORT=18997,
         MIN_TARGET=0,
-        MAX_TARGET=2**256//2**32 - 1,
-        PERSIST=True,
-        WORKER_PORT=9322,
-        BOOTSTRAP_ADDRS='seed1.p2pool.terracoin.org seed2.p2pool.terracoin.org forre.st vps.forre.st 93.97.192.93 66.90.73.83 67.83.108.0 219.84.64.174 24.167.17.248 109.74.195.142 83.211.86.49 94.23.34.145 168.7.116.243 94.174.40.189:9344 89.79.79.195 portals94.ns01.us'.split(' '),
-        ANNOUNCE_CHANNEL='#p2pool-alt',
-        VERSION_CHECK=lambda v: 80002 <= v,
-        VERSION_WARNING=lambda v: 'Upgrade Terracoin to >= 0.8.0.2!' if v < 80002 else None,
-    ),
-    terracoin_testnet=math.Object(
-        PARENT=networks.nets['terracoin_testnet'],
-        SHARE_PERIOD=30, # seconds
-        CHAIN_LENGTH=60*60//30, # shares
-        REAL_CHAIN_LENGTH=60*60//30, # shares
-        TARGET_LOOKBEHIND=200, # shares
-        SPREAD=15, # blocks
-        IDENTIFIER='b41b2356a5b7d35d'.decode('hex'),
-        PREFIX='1623b92172d2b8a2'.decode('hex'),
-        P2P_PORT=19323,
-        MIN_TARGET=0,
-        MAX_TARGET=2**256//2**32 - 1,
+        MAX_TARGET=2**256//2**20 - 1,
         PERSIST=False,
-        WORKER_PORT=19322,
-        BOOTSTRAP_ADDRS='seed1.p2pool.terracoin.org seed2.p2pool.terracoin.org forre.st vps.forre.st'.split(' '),
+        WORKER_PORT=19997,
+        BOOTSTRAP_ADDRS='',
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
-        VERSION_WARNING=lambda v: 'Upgrade Terracoin to >= 0.8.0.1!' if v < 80001 else None,
     ),
 
 )
